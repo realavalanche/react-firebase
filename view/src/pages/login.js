@@ -74,6 +74,7 @@ class login extends Component {
 			email: this.state.email,
 			password: this.state.password
 		};
+		// prefix https://us-central1-todo--fb.cloudfunctions.net/api for prod
 		axios
 			.post('/login', userData)
 			.then((response) => {

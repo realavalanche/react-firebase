@@ -81,6 +81,7 @@ class signup extends Component {
 			password: this.state.password,
 			confirmPassword: this.state.confirmPassword
 		};
+		// prefix https://us-central1-todo--fb.cloudfunctions.net/api for prod
 		axios
 			.post('/signup', newUserData)
 			.then((response) => {

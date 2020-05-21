@@ -81,6 +81,7 @@ class account extends Component {
 		authMiddleWare(this.props.history);
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
+		// prefix https://us-central1-todo--fb.cloudfunctions.net/api for prod
 		axios
 			.get('/user')
 			.then((response) => {
@@ -127,6 +128,7 @@ class account extends Component {
 		form_data.append('image', this.state.image);
 		form_data.append('content', this.state.content);
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
+		// prefix https://us-central1-todo--fb.cloudfunctions.net/api for prod
 		axios
 			.post('/user/image', form_data, {
 				headers: {
@@ -159,6 +161,7 @@ class account extends Component {
 			lastName: this.state.lastName,
 			country: this.state.country
 		};
+		// prefix https://us-central1-todo--fb.cloudfunctions.net/api for prod
 		axios
 			.post('/user', formRequest)
 			.then(() => {

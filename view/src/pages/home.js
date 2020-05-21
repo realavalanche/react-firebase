@@ -95,6 +95,7 @@ class home extends Component {
 		authMiddleWare(this.props.history);
 		const authToken = localStorage.getItem('AuthToken');
 		axios.defaults.headers.common = { Authorization: `${authToken}` };
+		// prefix https://us-central1-todo--fb.cloudfunctions.net/api for prod
 		axios
 			.get('/user')
 			.then((response) => {
