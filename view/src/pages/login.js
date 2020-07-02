@@ -3,7 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
@@ -17,7 +17,7 @@ const styles = (theme) => ({
 	paper: {
 		marginTop: theme.spacing(8),
 		display: 'flex',
-		flexDirection: 'column',
+		flexDirection: (props) => (props.set === 'row' ? 'row' : 'column'),
 		alignItems: 'center'
 	},
 	avatar: {
@@ -41,7 +41,7 @@ const styles = (theme) => ({
 	}
 });
 
-class login extends Component {
+class Login extends Component {
 	constructor(props) {
 		super(props);
 
@@ -79,12 +79,12 @@ class login extends Component {
 			.post('/login', userData)
 			.then((response) => {
 				localStorage.setItem('AuthToken', `Bearer ${response.data.token}`);
-				this.setState({ 
+				this.setState({
 					loading: false,
-				});		
+				});
 				this.props.history.push('/');
 			})
-			.catch((error) => {				
+			.catch((error) => {
 				this.setState({
 					errors: error.response.data,
 					loading: false
@@ -148,7 +148,7 @@ class login extends Component {
 						</Button>
 						<Grid container>
 							<Grid item>
-								<Link href="signup" variant="body2">
+								<Link to="/signup" variant="body2">
 									{"Don't have an account? Sign Up"}
 								</Link>
 							</Grid>
@@ -165,4 +165,4 @@ class login extends Component {
 	}
 }
 
-export default withStyles(styles)(login);
+export default withStyles(styles)(Login);
